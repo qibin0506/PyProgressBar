@@ -1,6 +1,3 @@
-# PyProgressBar
-
-```python
 import time
 from ProgressBar import ProgressBar
 
@@ -11,8 +8,3 @@ for i in range(max_value):
     time.sleep(0.2)
 
 progress_bar.end()
-```
-
-run `python test.py`
-
-![](./show.jpg)
