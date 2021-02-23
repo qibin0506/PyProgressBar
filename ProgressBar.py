@@ -5,7 +5,21 @@ class ProgressBar:
         self.move_left = "\u001b[{}D"
         self.max_value = max_value
 
-    def build_tag(self, progress, max_value):
+    def progress(self, progress, ext_str=None):
+        print(self.cls_line,
+              self.move_left.format(1000),
+              self.__build_tag(progress + 1, self.max_value),
+              '' if ext_str is None else ext_str,
+              end='',
+              flush=True)
+
+    def end(self):
+        print()
+
+    def __call__(self, *args, **kwargs):
+        return range(self.max_value)
+
+    def __build_tag(self, progress, max_value):
         tag = '['
 
         for _ in range(progress):
@@ -17,14 +31,3 @@ class ProgressBar:
         tag += ']'
 
         return tag
-
-    def progress(self, progress, ext_str=None):
-        print(self.cls_line,
-              self.move_left.format(1000),
-              self.build_tag(progress + 1, self.max_value),
-              '' if ext_str is None else ext_str,
-              end='',
-              flush=True)
-
-    def end(self):
-        print()
